@@ -1,8 +1,12 @@
+/// <reference types="vite/client" />
+
 import axios from 'axios';
 import { getAuthToken, removeAuthToken } from '../storage/auth';
 
+// Use VITE_API_URL from environment, fallback to '/api' for dev
+const baseURL = import.meta.env.VITE_API_URL;
 const api = axios.create({
-  baseURL: '/api',
+  baseURL,
 });
 
 api.interceptors.request.use((config) => {
